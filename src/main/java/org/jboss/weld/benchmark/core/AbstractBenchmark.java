@@ -23,13 +23,17 @@ import javax.enterprise.inject.spi.BeanManager;
 import org.apache.deltaspike.cdise.api.ContextControl;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.Warmup;
 
 @State(Scope.Thread)
+@Warmup(batchSize = Main.BATCH_SIZE, iterations = Main.ITERATIONS)
+@Measurement(batchSize = Main.BATCH_SIZE, iterations = Main.ITERATIONS)
 public abstract class AbstractBenchmark<T extends BeanUnderTest> {
 
     private ContextControl contextControl;

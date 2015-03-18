@@ -27,8 +27,8 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 public class Main {
 
     private static final int FORKS = 5;
-    private static final int ITERATIONS = 5;
-    private static final int BATCH_SIZE = 1 << 15;
+    public static final int ITERATIONS = 5;
+    public static final int BATCH_SIZE = 1 << 15;
 
     public static void main(String[] args) throws RunnerException {
 
@@ -38,10 +38,6 @@ public class Main {
         Options opt = new OptionsBuilder().include("org.jboss.weld.benchmark.core")
                 .forks(FORKS)
                 .threads(Runtime.getRuntime().availableProcessors())
-                .warmupBatchSize(BATCH_SIZE)
-                .warmupIterations(ITERATIONS)
-                .measurementBatchSize(BATCH_SIZE)
-                .measurementIterations(ITERATIONS)
                 .resultFormat(ResultFormatType.CSV)
                 .result("target" + File.separator + containerName + "-" + containerVersion + ".csv")
                 .build();
