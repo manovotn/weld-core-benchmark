@@ -86,7 +86,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>OWB12</id>
+            <id>OWB</id>
             <properties>
                 <container.name>owb</container.name>
                 <container.version>${owb.version}</container.version>
