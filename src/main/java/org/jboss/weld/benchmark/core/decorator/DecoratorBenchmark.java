@@ -16,11 +16,18 @@
  */
 package org.jboss.weld.benchmark.core.decorator;
 
+import static org.jboss.weld.benchmark.core.Main.BATCH_SIZE_FAST;
+import static org.jboss.weld.benchmark.core.Main.ITERATIONS;
+
 import org.jboss.weld.benchmark.core.AbstractBenchmark;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Warmup;
 
 /**
  * @author Kirill Gaevskii
  */
+@Warmup(batchSize = BATCH_SIZE_FAST, iterations = ITERATIONS)
+@Measurement(batchSize = BATCH_SIZE_FAST, iterations = ITERATIONS)
 public class DecoratorBenchmark extends AbstractBenchmark<DecoratedBean> {
 
     @Override

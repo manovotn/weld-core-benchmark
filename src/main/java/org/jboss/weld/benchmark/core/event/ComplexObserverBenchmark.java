@@ -16,6 +16,9 @@
  */
 package org.jboss.weld.benchmark.core.event;
 
+import static org.jboss.weld.benchmark.core.Main.BATCH_SIZE_SLOW;
+import static org.jboss.weld.benchmark.core.Main.ITERATIONS;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -30,6 +33,8 @@ import org.jboss.weld.benchmark.core.DummyQualifier;
 import org.jboss.weld.benchmark.core.SimpleApplicationScopedBean;
 import org.jboss.weld.benchmark.core.SimpleDependentBean;
 import org.jboss.weld.benchmark.core.event.ComplexObserverBenchmark.Dispatcher;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Warmup;
 
 /**
  * Dispatches an event that is delivered to {@link RequestScoped} observer that injects
@@ -37,6 +42,8 @@ import org.jboss.weld.benchmark.core.event.ComplexObserverBenchmark.Dispatcher;
  *
  * @author Jozef Hartinger
  */
+@Warmup(batchSize = BATCH_SIZE_SLOW, iterations = ITERATIONS)
+@Measurement(batchSize = BATCH_SIZE_SLOW, iterations = ITERATIONS)
 public class ComplexObserverBenchmark extends AbstractBenchmark<Dispatcher> {
 
     private static final String MARKER = "complexObserver";

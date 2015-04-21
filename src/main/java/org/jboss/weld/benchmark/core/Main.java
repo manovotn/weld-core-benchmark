@@ -28,7 +28,9 @@ public class Main {
 
     private static final int FORKS = 5;
     public static final int ITERATIONS = 5;
-    public static final int BATCH_SIZE = 1 << 15;
+    public static final int BATCH_SIZE_SLOW = 1 << 7;
+    public static final int BATCH_SIZE_NORMAL = 1 << 10;
+    public static final int BATCH_SIZE_FAST = 1 << 15;
 
     public static void main(String[] args) throws RunnerException {
 

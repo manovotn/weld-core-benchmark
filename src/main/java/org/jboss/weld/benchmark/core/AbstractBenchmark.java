@@ -16,6 +16,8 @@
  */
 package org.jboss.weld.benchmark.core;
 
+import static org.jboss.weld.benchmark.core.Main.BATCH_SIZE_NORMAL;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
@@ -32,8 +34,8 @@ import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Warmup;
 
 @State(Scope.Thread)
-@Warmup(batchSize = Main.BATCH_SIZE, iterations = Main.ITERATIONS)
-@Measurement(batchSize = Main.BATCH_SIZE, iterations = Main.ITERATIONS)
+@Warmup(batchSize = BATCH_SIZE_NORMAL, iterations = Main.ITERATIONS)
+@Measurement(batchSize = BATCH_SIZE_NORMAL, iterations = Main.ITERATIONS)
 public abstract class AbstractBenchmark<T extends BeanUnderTest> {
 
     private ContextControl contextControl;

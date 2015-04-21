@@ -16,6 +16,9 @@
  */
 package org.jboss.weld.benchmark.core.event;
 
+import static org.jboss.weld.benchmark.core.Main.BATCH_SIZE_SLOW;
+import static org.jboss.weld.benchmark.core.Main.ITERATIONS;
+
 import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -24,6 +27,8 @@ import org.jboss.weld.benchmark.core.AbstractBenchmark;
 import org.jboss.weld.benchmark.core.DummyEvent;
 import org.jboss.weld.benchmark.core.DummyQualifier;
 import org.jboss.weld.benchmark.core.event.MultipleEventTypesDispatchedToSimpleStaticObserverBenchmark.Dispatcher;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Warmup;
 
 /**
  * This benchmark uses the same Event instance to dispatch two event types. It verifies, that performance does not drop significantly
@@ -31,6 +36,8 @@ import org.jboss.weld.benchmark.core.event.MultipleEventTypesDispatchedToSimpleS
  *
  * @author Jozef Hartinger
  */
+@Warmup(batchSize = BATCH_SIZE_SLOW, iterations = ITERATIONS)
+@Measurement(batchSize = BATCH_SIZE_SLOW, iterations = ITERATIONS)
 public class MultipleEventTypesDispatchedToSimpleStaticObserverBenchmark extends AbstractBenchmark<Dispatcher> {
 
     private static final String MARKER = "multipleEventTypesDispatchedToStatic";
