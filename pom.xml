@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.weld.benchmark</groupId>
     <artifactId>weld-core-benchmark</artifactId>
@@ -12,9 +12,9 @@
         <container.version>default</container.version>
 
         <deltaspike.version>1.1.0</deltaspike.version>
-        <jmh.version>1.9</jmh.version>
+        <jmh.version>1.11.2</jmh.version>
         <owb.version>1.2.7</owb.version>
-        <weld.version>2.2.6.Final</weld.version>
+        <weld.version>2.3.1.Final</weld.version>
     </properties>
 
     <dependencies>
@@ -138,6 +138,13 @@
                                     <classpathScope>compile</classpathScope>
                                     <executable>java</executable>
                                     <arguments>
+                                        <argument>-Xms512m</argument>
+                                        <argument>-Xmx512m</argument>
+                                        <!--Enabling the arguments below will result in creation of GC log from each run-->
+                                        <!--<argument>-XX:+PrintGCTimeStamps</argument>
+                                        <argument>-XX:+PrintGCDetails</argument>
+                                        <argument>-verbose:gc</argument>
+                                        <argument>-Xloggc:gc.log</argument>-->
                                         <argument>-Dcontainer.name=${container.name}</argument>
                                         <argument>-Dcontainer.version=${container.version}</argument>
                                         <argument>-classpath</argument>

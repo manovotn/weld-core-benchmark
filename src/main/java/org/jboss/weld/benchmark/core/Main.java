@@ -26,8 +26,8 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 public class Main {
 
-    private static final int FORKS = 5;
-    public static final int ITERATIONS = 5;
+    private static final int FORKS = 10;
+    public static final int ITERATIONS = 10;
     public static final int BATCH_SIZE_SLOW = 1 << 11;
     public static final int BATCH_SIZE_NORMAL = 1 << 13;
     public static final int BATCH_SIZE_FAST = 1 << 16;
@@ -37,11 +37,13 @@ public class Main {
         String containerName = System.getProperty("container.name", "unknown");
         String containerVersion = System.getProperty("container.version", "unknown");
 
-        Options opt = new OptionsBuilder().include("org.jboss.weld.benchmark.core")
+        Options opt = new OptionsBuilder().include("org.jboss.weld.benchmark.core.")
+                .warmupForks(3)
                 .forks(FORKS)
                 .threads(Runtime.getRuntime().availableProcessors())
                 .resultFormat(ResultFormatType.CSV)
                 .result("target" + File.separator + containerName + "-" + containerVersion + ".csv")
+                .detectJvmArgs() //allows to take java vm args passed to program and use them here
                 .build();
         new Runner(opt).run();
     }
